@@ -1,0 +1,17 @@
+{
+  "name": "worklion-backend",
+  "version": "1.0.0",
+  "description": "Worklion backend",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Deniss Viskovs",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.0",
+    "body-parser": "^1.18.2",
+    "express-session": "^1.15.6",
+    "sequelize": "^4.31.2",
+    "mysql2": "^1.5.1",
+    "log4js": "^1.1.1"
+  }
+}
