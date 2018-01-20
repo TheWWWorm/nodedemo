@@ -26,7 +26,7 @@ readdirSync(join(__dirname, '../controllers/')).forEach(fileName => {
 
 app.use((err, req, res, next) => {
     logger.error('Error occured', err.stack);
-    res.status(500).send('Server error!');
+    res.status(500).send({error: 'Server error!'});
 });
 
 app.all('*', (req, res) => {

@@ -64,7 +64,7 @@ const model = {
             type: Sequelize.CHAR(50),
             allowNull: false
         },
-        SLOGAN  : {
+        SLOGAN: {
             type: Sequelize.CHAR(50),
             allowNull: true
         },
@@ -84,8 +84,8 @@ const model = {
             type: Sequelize.DATE,
             allowNull: true
         }
-    }, 
-    
+    },
+
     options: {
         createdAt: 'CREATED',
         updatedAt: 'UPDATED',
@@ -97,7 +97,7 @@ const model = {
 
     fn: {
         class: {
-            make(data)  {
+            make(data) {
                 return this.create({
                     LOGIN: data.login,
                     PASSWORD: data.password,
@@ -106,6 +106,45 @@ const model = {
                     SURNAME: data.surname,
                     EMAIL: data.email,
                     COUNTRY: data.country
+                });
+            },
+
+            checkLoginPass({
+                password,
+                login
+            }) {
+                return this.find({
+                    where: {
+                        LOGIN: login,
+                        PASSWORD: password,
+                    }
+                });
+            },
+
+            updateByID(id, data) {
+                const allowed = [
+                    'name',
+                    'surname',
+                    'email',
+                    'country',
+                    'postcode',
+                    'district',
+                    'city',
+                    'country',
+                    'slogan'
+                ];
+
+                data = allowed.reduce((obj, key) => {
+                    if (data[key]) {
+                        obj[key.toUpperCase()] = data[key];
+                    }
+                    return obj;
+                }, {});
+
+                return this.update(data, {
+                    where: {
+                        ID: id
+                    }
                 });
             }
         },
